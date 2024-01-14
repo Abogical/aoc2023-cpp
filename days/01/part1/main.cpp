@@ -2,9 +2,10 @@
 #include <cctype>
 #include <stdexcept>
 #include <ranges>
+#include <cstdint>
 
 template <std::ranges::input_range Range>
-char get_first_digit(const Range& input){
+uint8_t get_first_digit(const Range& input){
     for(const auto& c : input)
         if(isdigit(c))
             return c - '0';

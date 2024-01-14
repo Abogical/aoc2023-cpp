@@ -1,10 +1,9 @@
 #include <iostream>
-#include <cctype>
-#include <stdexcept>
 #include <map>
 #include <regex>
+#include <cstdint>
 
-static const std::map<std::string, char> digits{
+static const std::map<std::string, uint8_t> digits{
     {"one", 1},
     {"two", 2},
     {"three", 3},
@@ -16,13 +15,12 @@ static const std::map<std::string, char> digits{
     {"nine", 9}
 };
 
-char get_first_digit(const std::map<std::string, char>& digit_map, const std::regex& regex, const std::string& line){
+uint8_t get_first_digit(const std::map<std::string, uint8_t>& digit_map, const std::regex& regex, const std::string& line){
     auto matched_key = std::sregex_iterator(line.cbegin(), line.cend(), regex)->str();
     return matched_key.size() == 1? (matched_key[0] - '0') : (digit_map.at(matched_key));
 }
 
-std::regex digits_to_regex(const std::map<std::string, char>& digit_map){
-
+std::regex digits_to_regex(const std::map<std::string, uint8_t>& digit_map){
     std::string regex_str;
     for(const auto& digit : digit_map){
         regex_str += digit.first + "|";
@@ -35,16 +33,16 @@ std::regex digits_to_regex(const std::map<std::string, char>& digit_map){
 int main(int argc, char **argv) {
     int sum = 0;
 
-    std::regex first_regex = digits_to_regex(digits);
+    const std::regex first_regex = digits_to_regex(digits);
 
-    std::map<std::string, char> reverse_digits;
+    std::map<std::string, uint8_t> reverse_digits;
     for(const auto& digit_value : digits){
         std::string digit(digit_value.first);
         std::reverse(digit.begin(), digit.end());
         reverse_digits[digit] = digit_value.second;
     }
 
-    std::regex second_regex = digits_to_regex(reverse_digits);
+    const std::regex second_regex = digits_to_regex(reverse_digits);
 
     for(std::string line; std::getline(std::cin, line);){
         int first_digit = get_first_digit(digits, first_regex, line);
