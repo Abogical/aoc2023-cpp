@@ -13,7 +13,7 @@ uint8_t get_first_digit(const Range& input){
 }
 
 int main(int argc, char **argv) {
-    int sum = 0;
+    uint32_t sum = 0;
     for(std::string line; std::getline(std::cin, line);)
         sum += get_first_digit(line)*10 + get_first_digit(std::ranges::views::reverse(line));
     std::cout << sum << std::endl;

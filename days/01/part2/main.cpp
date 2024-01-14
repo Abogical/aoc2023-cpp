@@ -31,7 +31,7 @@ std::regex digits_to_regex(const std::map<std::string, uint8_t>& digit_map){
 }
 
 int main(int argc, char **argv) {
-    int sum = 0;
+    uint32_t sum = 0;
 
     const std::regex first_regex = digits_to_regex(digits);
 
@@ -45,10 +45,10 @@ int main(int argc, char **argv) {
     const std::regex second_regex = digits_to_regex(reverse_digits);
 
     for(std::string line; std::getline(std::cin, line);){
-        int first_digit = get_first_digit(digits, first_regex, line);
+        uint8_t first_digit = get_first_digit(digits, first_regex, line);
 
         std::reverse(line.begin(), line.end());
-        int second_digit = get_first_digit(reverse_digits, second_regex, line);
+        uint8_t second_digit = get_first_digit(reverse_digits, second_regex, line);
 
         sum += first_digit*10 + second_digit;
     }
