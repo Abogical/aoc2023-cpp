@@ -1,5 +1,5 @@
 #!/bin/sh
 
-TARGET="days/$1/$2"
+TARGET="days/$1"
 
-$TARGET/main < $TARGET/input.txt
+$TARGET/$2-bin < $TARGET/input.txt

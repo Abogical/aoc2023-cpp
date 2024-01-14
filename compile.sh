@@ -1,5 +1,5 @@
 #!/bin/sh
 
-TARGET="days/$1/$2"
+TARGET="days/$1"
 
-g++ -Wall -std=c++20 -o $TARGET/main $TARGET/main.cpp
+g++ -Wall -std=c++20 -o $TARGET/$2-bin $TARGET/$2.cpp
